@@ -1,4 +1,4 @@
-﻿using AspAPICore.Configurations;
+﻿using AspAPICore.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +34,10 @@ namespace AspAPICore
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMiddleware<IpWhiteListMiddleware>();
+
             app.UseMiddleware<RequestLoggerMiddleware>();
+
             app.UseMvc();
         }
     }
